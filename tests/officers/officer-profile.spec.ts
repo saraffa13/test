@@ -1,72 +1,72 @@
 // import { test, expect } from '@playwright/test';
-// import { login, navigateToGuards, hasGuardsInTable, getGuardRows } from '../fixtures/auth.fixture';
+// import { login, navigateToOfficers, hasOfficersInTable, getOfficerRows } from '../fixtures/auth.fixture';
 // import { generateUniquePhone } from '../fixtures/test-data';
 
 // /**
-//  * Guard Profile Tests
-//  * Tests viewing and editing guard profile information
+//  * Area Officer Profile Tests
+//  * Tests viewing and editing officer profile information
 //  *
-//  * NOTE: These tests require at least one guard to exist in the system
+//  * NOTE: These tests require at least one officer to exist in the system
 //  */
 
-// test.describe('Guard Profile', () => {
+// test.describe('Area Officer Profile', () => {
 
 //   test.beforeEach(async ({ page }) => {
-//     // Login and navigate to guards
+//     // Set longer timeout for beforeEach due to slow page loads
+//     test.setTimeout(60000);
+//     // Login and navigate to officers
 //     await login(page);
-//     await navigateToGuards(page);
+//     await navigateToOfficers(page);
 //   });
 
-//   test('should view guard profile page and tabs', async ({ page }) => {
-//     console.log('🧪 Testing: View guard profile and tabs');
+//   test('should view officer profile page and tabs', async ({ page }) => {
+//     console.log('🧪 Testing: View officer profile and tabs');
 
-//     // Check if guards exist
-//     if (!(await hasGuardsInTable(page))) {
-//       console.log('⚠️ No guards available for testing');
-//       await expect(page.getByRole('button', { name: 'Add New Guard' })).toBeVisible();
-//       console.log('ℹ️ Run add-guard-complete test first to create test data');
+//     // Check if officers exist
+//     if (!(await hasOfficersInTable(page))) {
+//       console.log('⚠️ No officers available for testing');
+//       await expect(page.getByRole('button', { name: 'Add New Officer' })).toBeVisible();
+//       console.log('ℹ️ Run add-officer-complete test first to create test data');
 //       return;
 //     }
 
-//     const guardRows = getGuardRows(page);
-//     const rowCount = await guardRows.count();
-//     console.log(`📊 Found ${rowCount} guard(s) in table`);
+//     const officerRows = getOfficerRows(page);
+//     const rowCount = await officerRows.count();
+//     console.log(`📊 Found ${rowCount} officer(s) in table`);
 
-//     // Click on the first guard row
-//     await guardRows.first().click();
+//     // Click on the first officer row
+//     await officerRows.first().click();
 
-//     console.log('✅ Clicked on first guard');
+//     console.log('✅ Clicked on first officer');
 
 //     // Wait for navigation to profile page
 //     await page.waitForLoadState('networkidle');
 
-//     // Should see navigation tabs for guard sections
+//     // Should see navigation tabs for officer sections
 //     const performanceTab = page.getByRole('button', { name: 'PERFORMANCE' });
 //     const profileTab = page.getByRole('button', { name: 'PROFILE' });
-//     const assignmentTab = page.getByRole('button', { name: 'ASSIGNMENT' });
-//     const historyTab = page.getByRole('button', { name: 'HISTORY' });
+//     const clientSitesTab = page.getByRole('button', { name: 'CLIENT SITES' });
 
 //     await expect(performanceTab).toBeVisible();
 //     await expect(profileTab).toBeVisible();
-//     await expect(assignmentTab).toBeVisible();
-//     await expect(historyTab).toBeVisible();
+//     await expect(clientSitesTab).toBeVisible();
 
 //     console.log('✅ All tabs are visible');
 //   });
 
-//   test('should navigate between guard tabs', async ({ page }) => {
+//   test('should navigate between officer tabs', async ({ page }) => {
 //     console.log('🧪 Testing: Navigate between tabs');
 
-//     // Check if guards exist
-//     if (!(await hasGuardsInTable(page))) {
-//       console.log('⚠️ No guards available for testing');
-//       await expect(page.getByRole('button', { name: 'Add New Guard' })).toBeVisible();
+//     // Check if officers exist
+//     if (!(await hasOfficersInTable(page))) {
+//       console.log('⚠️ No officers available for testing');
+//       await expect(page.getByRole('button', { name: 'Add New Officer' })).toBeVisible();
 //       return;
 //     }
 
-//     // Open guard profile
-//     const guardRows = getGuardRows(page);
-//     await guardRows.first().click();
+//     // Open officer profile
+//     const officerRows = getOfficerRows(page);
+//     await officerRows.first().click();
 //     await page.waitForLoadState('networkidle');
 
 //     // PERFORMANCE tab (default)
@@ -81,17 +81,11 @@
 //     await page.waitForTimeout(500);
 //     console.log('✅ Clicked PROFILE tab');
 
-//     // ASSIGNMENT tab
-//     const assignmentTab = page.getByRole('button', { name: 'ASSIGNMENT' });
-//     await assignmentTab.click();
+//     // CLIENT SITES tab
+//     const clientSitesTab = page.getByRole('button', { name: 'CLIENT SITES' });
+//     await clientSitesTab.click();
 //     await page.waitForTimeout(500);
-//     console.log('✅ Clicked ASSIGNMENT tab');
-
-//     // HISTORY tab
-//     const historyTab = page.getByRole('button', { name: 'HISTORY' });
-//     await historyTab.click();
-//     await page.waitForTimeout(500);
-//     console.log('✅ Clicked HISTORY tab');
+//     console.log('✅ Clicked CLIENT SITES tab');
 
 //     console.log('✅ All tabs navigated successfully');
 //   });
@@ -99,16 +93,16 @@
 //   test('should open and close profile edit dialog', async ({ page }) => {
 //     console.log('🧪 Testing: Open/close profile edit dialog');
 
-//     // Check if guards exist
-//     if (!(await hasGuardsInTable(page))) {
-//       console.log('⚠️ No guards available for testing');
-//       await expect(page.getByRole('button', { name: 'Add New Guard' })).toBeVisible();
+//     // Check if officers exist
+//     if (!(await hasOfficersInTable(page))) {
+//       console.log('⚠️ No officers available for testing');
+//       await expect(page.getByRole('button', { name: 'Add New Officer' })).toBeVisible();
 //       return;
 //     }
 
-//     // Navigate to guard profile
-//     const guardRows = getGuardRows(page);
-//     await guardRows.first().click();
+//     // Navigate to officer profile
+//     const officerRows = getOfficerRows(page);
+//     await officerRows.first().click();
 //     await page.waitForLoadState('networkidle');
 
 //     // Go to PROFILE tab
@@ -153,29 +147,29 @@
 //       }
 //     } else {
 //       console.log('⚠️ No edit buttons found on profile page');
-//       console.log('ℹ️ Edit functionality might not be available for this guard');
+//       console.log('ℹ️ Edit functionality might not be available for this officer');
 //       // Verify we're still on the profile page
 //       await expect(page.getByRole('button', { name: 'PROFILE' })).toBeVisible();
 //     }
 //   });
 
-//   test('should edit guard contact phone number', async ({ page }) => {
-//     console.log('🧪 Testing: Edit guard contact phone number');
+//   test('should edit officer contact phone number', async ({ page }) => {
+//     console.log('🧪 Testing: Edit officer contact phone number');
 
-//     // Check if guards exist
-//     if (!(await hasGuardsInTable(page))) {
-//       console.log('⚠️ No guards available for testing');
-//       await expect(page.getByRole('button', { name: 'Add New Guard' })).toBeVisible();
+//     // Check if officers exist
+//     if (!(await hasOfficersInTable(page))) {
+//       console.log('⚠️ No officers available for testing');
+//       await expect(page.getByRole('button', { name: 'Add New Officer' })).toBeVisible();
 //       return;
 //     }
 
 //     // Generate unique phone number for this test
-//     const uniquePhone = generateUniquePhone('99');
+//     const uniquePhone = generateUniquePhone('92');
 //     console.log(`📞 Will attempt to edit phone to: ${uniquePhone}`);
 
-//     // Navigate to guard profile
-//     const guardRows = getGuardRows(page);
-//     await guardRows.first().click();
+//     // Navigate to officer profile
+//     const officerRows = getOfficerRows(page);
+//     await officerRows.first().click();
 //     await page.waitForLoadState('networkidle');
 
 //     // Go to PROFILE tab
@@ -250,19 +244,19 @@
 //     await expect(page.getByRole('button', { name: 'PROFILE' })).toBeVisible();
 //   });
 
-//   test('should return to guards list from profile', async ({ page }) => {
-//     console.log('🧪 Testing: Return to guards list');
+//   test('should return to officers list from profile', async ({ page }) => {
+//     console.log('🧪 Testing: Return to officers list');
 
-//     // Check if guards exist
-//     if (!(await hasGuardsInTable(page))) {
-//       console.log('⚠️ No guards available for testing');
-//       await expect(page.getByRole('button', { name: 'Add New Guard' })).toBeVisible();
+//     // Check if officers exist
+//     if (!(await hasOfficersInTable(page))) {
+//       console.log('⚠️ No officers available for testing');
+//       await expect(page.getByRole('button', { name: 'Add New Officer' })).toBeVisible();
 //       return;
 //     }
 
-//     // Open guard profile
-//     const guardRows = getGuardRows(page);
-//     await guardRows.first().click();
+//     // Open officer profile
+//     const officerRows = getOfficerRows(page);
+//     await officerRows.first().click();
 //     await page.waitForLoadState('networkidle');
 
 //     // Verify we're on profile page
@@ -276,21 +270,21 @@
 //       await backButton.click();
 //       console.log('✅ Clicked back button');
 
-//       // Wait for navigation back to guards list
+//       // Wait for navigation back to officers list
 //       await page.waitForLoadState('networkidle');
 //       await page.waitForTimeout(1000);
 
-//       // Verify we're back on guards list
-//       await expect(page.getByRole('button', { name: 'Add New Guard' })).toBeVisible();
-//       console.log('✅ Returned to guards list');
+//       // Verify we're back on officers list
+//       await expect(page.getByRole('button', { name: 'Add New Officer' })).toBeVisible();
+//       console.log('✅ Returned to officers list');
 //     } else {
 //       // Try browser back
 //       await page.goBack();
 //       await page.waitForLoadState('networkidle');
 
-//       // Verify we're back on guards list
-//       await expect(page.getByRole('button', { name: 'Add New Guard' })).toBeVisible();
-//       console.log('✅ Returned to guards list via browser back');
+//       // Verify we're back on officers list
+//       await expect(page.getByRole('button', { name: 'Add New Officer' })).toBeVisible();
+//       console.log('✅ Returned to officers list via browser back');
 //     }
 //   });
 // });

@@ -101,3 +101,41 @@ export function generateEmergencyContact(phone: string) {
     phone,
   };
 }
+
+/**
+ * Officer-specific test data interface
+ */
+export interface OfficerTestData {
+  firstName: string;
+  lastName: string;
+  email: string;
+  phone: string;
+  alternatePhone: string;
+  emergencyPhone: string;
+  timestamp: number;
+}
+
+/**
+ * Generates unique officer data for each test run
+ * Uses timestamp + random numbers to ensure uniqueness
+ */
+export function generateUniqueOfficerData(): OfficerTestData {
+  const timestamp = Date.now();
+  const randomId = Math.floor(1000 + Math.random() * 9000); // 4-digit random
+
+  // Generate unique 10-digit phone numbers starting with 95, 94, 93
+  const generatePhone = (prefix: string) => {
+    const random8Digits = Math.floor(10000000 + Math.random() * 90000000);
+    return `${prefix}${random8Digits}`;
+  };
+
+  return {
+    firstName: 'Test',
+    lastName: `Officer${randomId}`,
+    email: `testofficer${timestamp}@playwright.test`,
+    phone: generatePhone('95'),
+    alternatePhone: generatePhone('94'),
+    emergencyPhone: generatePhone('93'),
+    timestamp,
+  };
+}
