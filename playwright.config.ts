@@ -74,7 +74,7 @@ export default defineConfig({
   webServer: process.env.CI
     ? {
         command: "pnpm exec vite preview --port 4173 --strictPort",
-        url: "http://localhost:4173",
+        url: "https://main.dlsxzkf1thczu.amplifyapp.com",
         reuseExistingServer: false,
         timeout: 120_000,
       }
