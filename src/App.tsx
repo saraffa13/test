@@ -19,6 +19,8 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { SettingsProvider } from "./modules/settings/context/SettingsContext";
 import theme from "./theme";
 
+
+
 // Lazy loaded components
 const Clients = lazy(() => import("./modules/clients/pages/Clients"));
 const LoginPage = lazy(() => import("./modules/LoginPage"));
