@@ -13,6 +13,7 @@ import { defineConfig, devices } from "@playwright/test";
  */
 export default defineConfig({
   testDir: "./tests",
+  timeout: 60_000,
   /* Run tests in files in parallel */
   fullyParallel: true,
   /* Fail the build on CI if you accidentally left test.only in the source code. */
@@ -27,6 +28,7 @@ export default defineConfig({
   use: {
     /* Base URL to use in actions like `await page.goto('')`. */
     baseURL: process.env.APP_URL || (process.env.CI ? "http://localhost:4173" : "http://localhost:5173"),
+    expect: { timeout: 10_000 },
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: "on-first-retry",
@@ -71,17 +73,19 @@ export default defineConfig({
   ],
 
   /* Serve the built app before starting the tests */
-  webServer: process.env.CI
-    ? {
-        command: "pnpm exec vite preview --port 4173 --strictPort",
-        url: "http://localhost:4173",
-        reuseExistingServer: false,
-        timeout: 120_000,
-      }
-    : {
-        command: "pnpm run dev -- --port 5173 --strictPort",
-        url: "http://localhost:5173",
-        reuseExistingServer: true,
-        timeout: 120_000,
-      },
+  webServer: process.env.APP_URL
+    ? undefined
+    : process.env.CI
+      ? {
+          command: "pnpm exec vite preview --port 4173 --strictPort",
+          url: "http://localhost:4173",
+          reuseExistingServer: false,
+          timeout: 120_000,
+        }
+      : {
+          command: "pnpm run dev -- --port 5173 --strictPort",
+          url: "http://localhost:5173",
+          reuseExistingServer: true,
+          timeout: 120_000,
+        },
 });

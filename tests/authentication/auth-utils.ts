@@ -1,6 +1,6 @@
 import { Page } from "@playwright/test";
 
-export async function loginUser(page: Page, email: string = "admin@agency1.com", password: string = "12345678") {
+export async function loginUser(page: Page, email: string = "admin1@upnup.com", password: string = "Password@123") {
   // Navigate using Playwright baseURL (configured in playwright.config.ts).
   await page.goto("/login");
   await page.getByRole("textbox", { name: "Email" }).click();
