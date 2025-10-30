@@ -1,8 +1,8 @@
 import { Page } from "@playwright/test";
 
-export async function loginUser(page: Page, email: string = "admin1@upandup.com", password: string = "Password@123") {
-  // await page.goto("http://localhost:5173/login");
-  await page.goto("https://main.dlsxzkf1thczu.amplifyapp.com");
+export async function loginUser(page: Page, email: string = "admin@agency1.com", password: string = "12345678") {
+  // Navigate using Playwright baseURL (configured in playwright.config.ts).
+  await page.goto("/login");
   await page.getByRole("textbox", { name: "Email" }).click();
   await page.getByRole("textbox", { name: "Email" }).fill(email);
   await page.getByRole("textbox", { name: "Email" }).press("Tab");
