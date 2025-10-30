@@ -26,7 +26,7 @@ export default defineConfig({
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
     /* Base URL to use in actions like `await page.goto('')`. */
-    baseURL: process.env.APP_URL || (process.env.CI ? "http://localhost:4173" : "http://localhost:5173"),
+    baseURL: process.env.APP_URL || (process.env.CI ? "https://main.dlsxzkf1thczu.amplifyapp.com" : "http://localhost:5173"),
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: "on-first-retry",
