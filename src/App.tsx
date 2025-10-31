@@ -57,6 +57,7 @@ const AddNewUniform = lazy(() => import("./modules/settings/components/AddNewUni
 const SettingsPage = lazy(() => import("./modules/settings/pages/SettingsPage"));
 
 // Create a client
+
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
