@@ -42,9 +42,9 @@ jobs:
       # 7. RUN THE TEST GATE
       - name: Execute Playwright E2E Tests
         # If any test fails, this step fails, and the PR cannot be merged.
-        env:
-          VITE_DUTY_API_BASE_URL: ${{ secrets.VITE_DUTY_API_BASE_URL || 'https://upandup.shilltube.fun/api/v2' }}
-          VITE_CORE_API_BASE_URL: ${{ secrets.VITE_CORE_API_BASE_URL || 'https://upandup.shilltube.fun/api/v1' }}
+        # env:
+        #   VITE_DUTY_API_BASE_URL: ${{ secrets.VITE_DUTY_API_BASE_URL || 'https://upandup.shilltube.fun/api/v2' }}
+        #   VITE_CORE_API_BASE_URL: ${{ secrets.VITE_CORE_API_BASE_URL || 'https://upandup.shilltube.fun/api/v1' }}
         run: pnpm exec playwright test --project=chromium --reporter=github
 
       # 8. Upload Artifacts (Optional, but gives visibility into failures)
