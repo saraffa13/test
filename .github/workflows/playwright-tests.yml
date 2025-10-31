@@ -8,7 +8,6 @@ jobs:
   playwright_test_gate:
     name: Build, Test & Gate
     runs-on: ubuntu-latest
-    timeout-minutes: 20
 
     steps:
       - name: Checkout Code
@@ -38,9 +37,6 @@ jobs:
       # 6. Build Project (Ensures no build errors before testing)
       # Since you use Vite, this is important to ensure production readiness.
       - name: Run Production Build
-        env:
-          VITE_DUTY_API_BASE_URL: ${{ secrets.VITE_DUTY_API_BASE_URL || 'https://upandup.shilltube.fun/api/v2' }}
-          VITE_CORE_API_BASE_URL: ${{ secrets.VITE_CORE_API_BASE_URL || 'https://upandup.shilltube.fun/api/v1' }}
         run: pnpm run build
 
       # 7. RUN THE TEST GATE
@@ -49,8 +45,7 @@ jobs:
         env:
           VITE_DUTY_API_BASE_URL: ${{ secrets.VITE_DUTY_API_BASE_URL || 'https://upandup.shilltube.fun/api/v2' }}
           VITE_CORE_API_BASE_URL: ${{ secrets.VITE_CORE_API_BASE_URL || 'https://upandup.shilltube.fun/api/v1' }}
-          # APP_URL: https://main.dlsxzkf1thczu.amplifyapp.com
-        run: pnpm exec playwright test --project=chromium --reporter=github --max-failures=1
+        run: pnpm exec playwright test --project=chromium --reporter=github
 
       # 8. Upload Artifacts (Optional, but gives visibility into failures)
       - name: Upload Playwright Report
